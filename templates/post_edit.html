@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование поста</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Редактировать пост</h1>
+        <nav>
+            <a href="/posts">Вернуться назад</a>
+        </nav>
+    </header>
+    <main>
+        <form action="/posts/{{ post.id }}/update" method="post" class="form-style">
+            <label>Заголовок: <input type="text" name="title" value="{{ post.title }}" required></label><br>
+            <label>Содержание: <textarea name="content" required>{{ post.content }}</textarea></label><br>
+            <button type="submit">Обновить пост</button>
+        </form>
+    </main>
+</body>
+</html>

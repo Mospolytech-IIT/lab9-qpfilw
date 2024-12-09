@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Посты</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Посты</h1>
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/users">Пользователи</a>
+        </nav>
+    </header>
+    <main>
+        <div class="main-grid">
+            <section>
+                <h2>Добавить новый пост</h2>
+                <form action="/posts/add" method="post" class="form-style">
+                    <label>Заголовок: <input type="text" name="title" required></label><br>
+                    <label>Содержание: <textarea name="content" required></textarea></label><br>
+                    <label>ID пользователя: <input type="number" name="user_id" required></label><br>
+                    <button type="submit">Добавить пост</button>
+                </form>
+            </section>
+            <section>
+                <h2>Все посты</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Заголовок</th>
+                            <th>Содержание</th>
+                            <th>ID пользователя</th>
+                            <th>Возможности</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in posts %}
+                        <tr>
+                            <td>{{ post.id }}</td>
+                            <td>{{ post.title }}</td>
+                            <td>{{ post.content }}</td>
+                            <td>{{ post.user_id }}</td>
+                            <td>
+                                <a href="/posts/{{ post.id }}">Редактировать</a>
+                                <form action="/posts/{{ post.id }}/delete" method="post" style="display:inline;">
+                                    <button type="submit" class="delete-btn">Удалить</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

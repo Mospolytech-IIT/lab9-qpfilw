@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пользователи</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Пользователи</h1>
+        <nav>
+            <a href="/">Главная</a>
+            <a href="/posts">Посты</a>
+        </nav>
+    </header>
+    <main>
+        <div class="main-grid">
+            <section>
+                <h2>Добавить нового пользователя</h2>
+                <form action="/users/add" method="post" class="form-style">
+                    <label>Логин: <input type="text" name="username" required></label><br>
+                    <label>Почта: <input type="email" name="email" required></label><br>
+                    <label>Пароль: <input type="password" name="password" required></label><br>
+                    <button type="submit">Добавить пользователя</button>
+                </form>
+            </section>
+            <section>
+                <h2>Все пользователи</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Логин</th>
+                            <th>Почта</th>
+                            <th>Возможности</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>
+                                <a href="/users/{{ user.id }}">Редактировать</a>
+                                <form action="/users/{{ user.id }}/delete" method="post" style="display:inline;">
+                                    <button type="submit" class="delete-btn">Удалить</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
