@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование пользователя</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Редактировать пользователя</h1>
+        <nav>
+            <a href="/users">Вернуться назад</a>
+        </nav>
+    </header>
+    <main>
+        <form action="/users/{{ user.id }}/update" method="post" class="form-style">
+            <label>Логин: <input type="text" name="username" value="{{ user.username }}" required></label><br>
+            <label>Почта: <input type="email" name="email" value="{{ user.email }}" required></label><br>
+            <label>Пароль: <input type="password" name="password" required></label><br>
+            <button type="submit">Обновить пользователя</button>
+        </form>
+    </main>
+</body>
+</html>
